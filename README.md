@@ -13,7 +13,7 @@ An authentication layer is needed for authentication, authorization, and provide
 
 # Auth0 Overview
 
-Microservices authenticate users by tokens. When a user logs in, the authentication layer generates a signed token and returnts it to the client. Each service that the client seeks to access verifies the signature of the JWT token by using the same secret provided to sign the token. This verification is automatically done by Auth0, so that a secret key does not have to be distributed to every microservice.  
+Microservices authenticate users by tokens via an authentication layer. When a user logs in, the auth layer generates a signed token and returns it to the client. Each service that the client seeks to access verifies the signature of the JWT token by using the same secret provided to sign the token. This verification is automatically done by Auth0, so that the secret key does not have to be distributed to every microservice.  
 
 ![auth flow](./docs/flow.png "Auth Flow")
 
