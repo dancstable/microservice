@@ -1,32 +1,34 @@
 # Microservice Overview and Instructions
 
-# Microservice Architecture
-
-A microservice architecture offers several advantages over monolithic applications. In this design the overall application is broken up by distinct services. Microservices allow for:
-- scaling each microservice differently, such as search, payments, data science, etc.
+A microservices architecture offers several advantages over monolithic applications. Under this design the overall application is broken up by distinct services. In this way mMicroservices allow for:
+- Scaling each microservice differently, such as search, payments, data science, etc.
 - Separation of concerns
-- each team can work independently on their domain
+- Each team can work independently on their domain
+- Mix of technologies - e.g., each service can independently use django, flask, fastapi, etc.
 
 ![microservice](./docs/microservice.png "Microservice")
 
+# Microservice Architecture
+
 An authentication layer is needed for authentication, authorization, and provides identity access management.
 
-# Auth0 Overview
-
-Microservices authenticate users by tokens via an authentication layer. When a user logs in, the auth layer generates a signed token and returns it to the client. Each service that the client seeks to access verifies the signature of the JWT token by using the same secret provided to sign the token. This verification is automatically done by Auth0, so that the secret key does not have to be distributed to every microservice.  
+Microservices authenticate users by tokens via an authentication layer. When a user logs in, the auth layer generates a signed token and returns it to the client. 
 
 ![auth flow](./docs/flow.png "Auth Flow")
 
+For every service that the client seeks to access, the microservice verifies the signature of the JWT token by using the same secret provided to sign the token. This verification is automatically done by Auth0, such that the secret key does not have to be distributed to every microservice.  
+
+![authorize](./docs/authorize.png "Authorize")
+
 # Install
-To run the sample, make sure you have `python3` and `pip` installed.
+To run the auth0 framework, make sure you have `python3` and `pip` installed.
 
 Rename `.env.example` to `.env` and populate it with the client ID, domain, secret, callback URL and audience for your Auth0 app. 
-Also, add the callback URL to the settings section of your Auth0 client.
 
-Register `http://localhost:3000/callback` as `Allowed Callback URLs` and `http://localhost:3000`
-as `Allowed Logout URLs` in your client settings.
+Once those variables are set, run 
 
-Run `pip install -r requirements.txt` to install the dependencies and run `python server.py`.
+`pip install -r requirements.txt` to install the dependencies and run `python server.py`.
+
 The app will be served at [http://localhost:3000/](http://localhost:3000/).
 
 # Running the App with Docker
